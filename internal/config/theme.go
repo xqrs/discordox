@@ -165,6 +165,15 @@ type (
 		MaxHeight uint `toml:"max_height"`
 	}
 
+	HotkeysBarTheme struct {
+		Enabled      bool         `toml:"enabled"`
+		Padding      [2]int       `toml:"padding"`
+		Compact      bool         `toml:"show_compact_keybinds"`
+		ShowAll      bool         `toml:"show_all_keybinds"`
+		Format       string       `toml:"format"`
+		Separator    string       `toml:"separator"`
+	}
+
 	DialogTheme struct {
 		Style           StyleWrapper `toml:"style"`
 		BackgroundStyle StyleWrapper `toml:"background_style"`
@@ -177,6 +186,7 @@ type (
 		GuildsTree   GuildsTreeTheme   `toml:"guilds_tree"`
 		MessagesList MessagesListTheme `toml:"messages_list"`
 		MentionsList MentionsListTheme `toml:"mentions_list"`
+		HotkeysBar   HotkeysBarTheme      `toml:"hotkeys_bar"`
 		Dialog       DialogTheme       `toml:"dialog"`
 	}
 )
