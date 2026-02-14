@@ -168,6 +168,11 @@ func (mi *messageInput) onInputCapture(event *tcell.EventKey) *tcell.EventKey {
 				handler(tcell.NewEventKey(tcell.KeyEnd, "", tcell.ModNone), nil)
 				return nil
 			}
+			switch event.Name() {
+			case "Up", "Down", "Home", "PgUp", "PgDn", "End":
+				handler(event, nil)
+				return nil
+			}
 		}
 
 		go mi.chatView.app.QueueUpdateDraw(func() { mi.tabSuggestion() })

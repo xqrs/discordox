@@ -320,10 +320,12 @@ func (gt *guildsTree) onInputCapture(event *tcell.EventKey) *tcell.EventKey {
 		return tcell.NewEventKey(tcell.KeyDown, "", tcell.ModNone)
 	case gt.cfg.Keybinds.GuildsTree.Top:
 		gt.Move(gt.GetRowCount() * -1)
+		return nil
 		// return tcell.NewEventKey(tcell.KeyHome, 0, tcell.ModNone)
 	case gt.cfg.Keybinds.GuildsTree.Bottom:
 		gt.Move(gt.GetRowCount())
 		// return tcell.NewEventKey(tcell.KeyEnd, 0, tcell.ModNone)
+		return nil
 
 	case gt.cfg.Keybinds.GuildsTree.SelectCurrent:
 		return tcell.NewEventKey(tcell.KeyEnter, "", tcell.ModNone)
@@ -333,6 +335,15 @@ func (gt *guildsTree) onInputCapture(event *tcell.EventKey) *tcell.EventKey {
 
 	case gt.cfg.Keybinds.GuildsTree.YankID:
 		gt.yankID()
+		return nil
+	}
+	switch event.Name() {
+	case "Up", "Down", "PgDn", "PgUp":
+		return event
+	case "Home":
+		gt.Move(gt.GetRowCount() * -1)
+	case "End":
+		gt.Move(gt.GetRowCount())
 	}
 
 	return nil
