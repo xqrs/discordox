@@ -3,7 +3,7 @@ package markdown
 import (
 	"strings"
 
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/tview"
 	"github.com/diamondburned/ningen/v3/discordmd"
 	"github.com/gdamore/tcell/v3"
 	"github.com/yuin/goldmark/ast"

@@ -9,7 +9,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/BurntSushi/toml"
-	"github.com/ayn2op/discordo/internal/consts"
+	"github.com/xqrs/discordox/internal/consts"
 	"github.com/diamondburned/arikawa/v3/discord"
 )
 

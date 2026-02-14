@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/BurntSushi/toml"
-	"github.com/ayn2op/discordo/internal/consts"
+	"github.com/xqrs/discordox/internal/consts"
 	"github.com/gdamore/tcell/v3"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"

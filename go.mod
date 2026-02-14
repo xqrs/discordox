@@ -1,8 +1,8 @@
-module github.com/ayn2op/discordo
+module github.com/xqrs/discordox
 
 go 1.25.3
 
-// replace github.com/ayn2op/tview => ../tview
+// replace github.com/xqrs/tview => ../tview
 
 require (
 	github.com/BurntSushi/toml v1.6.0
@@ -17,11 +17,13 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3
-	github.com/klauspost/compress v1.18.3
+	github.com/klauspost/compress v1.18.4
 	github.com/ncruces/zenity v0.10.14
+	github.com/rivo/uniseg v0.4.7
 	github.com/sahilm/fuzzy v0.1.1
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
+	github.com/xqrs/tview v0.0.0-20260214104741-720bcf798e69
 	github.com/yuin/goldmark v1.7.16
 	github.com/zalando/go-keyring v0.2.6
 	golang.design/x/clipboard v0.7.1
@@ -45,17 +47,16 @@ require (
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
-	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sergeymakinen/go-bmp v1.0.0 // indirect
 	github.com/sergeymakinen/go-ico v1.0.0 // indirect
 	github.com/tadvi/systray v0.0.0-20190226123456-11a2b8fa57af // indirect
 	github.com/twmb/murmur3 v1.1.8 // indirect
 	go4.org v0.0.0-20260112195520-a5071408f32f // indirect
-	golang.org/x/exp/shiny v0.0.0-20260112195511-716be5621a96 // indirect
-	golang.org/x/image v0.35.0 // indirect
-	golang.org/x/mobile v0.0.0-20260204172633-1dceadbbeea3 // indirect
-	golang.org/x/sys v0.40.0 // indirect
-	golang.org/x/term v0.39.0 // indirect
-	golang.org/x/text v0.33.0 // indirect
+	golang.org/x/exp/shiny v0.0.0-20260212183809-81e46e3db34a // indirect
+	golang.org/x/image v0.36.0 // indirect
+	golang.org/x/mobile v0.0.0-20260211191516-dcd2a3258864 // indirect
+	golang.org/x/sys v0.41.0 // indirect
+	golang.org/x/term v0.40.0 // indirect
+	golang.org/x/text v0.34.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
 )

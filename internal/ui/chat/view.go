@@ -2,15 +2,15 @@ package chat
 
 import (
 	"fmt"
-	"github.com/ayn2op/tview/layers"
+	"github.com/xqrs/tview/layers"
 	"log/slog"
 	"sync"
 	"time"
 
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/keyring"
-	"github.com/ayn2op/discordo/internal/ui"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/keyring"
+	"github.com/xqrs/discordox/internal/ui"
+	"github.com/xqrs/tview"
 	"github.com/diamondburned/arikawa/v3/discord"
 	"github.com/diamondburned/ningen/v3"
 	"github.com/diamondburned/ningen/v3/states/read"

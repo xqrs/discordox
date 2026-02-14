@@ -5,10 +5,10 @@ import (
 	"log/slog"
 	"reflect"
 
-	"github.com/ayn2op/discordo/internal/clipboard"
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/ui"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/clipboard"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/ui"
+	"github.com/xqrs/tview"
 	"github.com/diamondburned/arikawa/v3/discord"
 	"github.com/diamondburned/arikawa/v3/gateway"
 	"github.com/diamondburned/ningen/v3"
@@ -145,8 +145,8 @@ func (gt *guildsTree) createCategoryNode(node *tview.TreeNode, channel discord.C
 
 func (gt *guildsTree) setNodeLineStyle(node *tview.TreeNode, style tcell.Style) {
 	line := node.GetLine()
-	for i := range line {
-		line[i].Style = style
+	for i := range line.Segments {
+		line.Segments[i].Style = style
 	}
 	node.SetLine(line)
 }

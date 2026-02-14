@@ -5,8 +5,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/tview"
 	"github.com/diamondburned/arikawa/v3/discord"
 	"github.com/gdamore/tcell/v3"
 )

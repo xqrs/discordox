@@ -5,9 +5,9 @@ import (
 	"log/slog"
 	"slices"
 
-	"github.com/ayn2op/discordo/internal/http"
-	"github.com/ayn2op/discordo/internal/notifications"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/http"
+	"github.com/xqrs/discordox/internal/notifications"
+	"github.com/xqrs/tview"
 	"github.com/diamondburned/arikawa/v3/discord"
 	"github.com/diamondburned/arikawa/v3/gateway"
 	"github.com/diamondburned/arikawa/v3/session"

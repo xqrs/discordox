@@ -5,9 +5,9 @@ import (
 	"regexp"
 	"reflect"
 
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/markdown"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/markdown"
+	"github.com/xqrs/tview"
 	"github.com/gdamore/tcell/v3"
 	"github.com/rivo/uniseg"
 )
@@ -176,14 +176,14 @@ func (b *hotkeysBar) update() int {
 
 func lineWidth(line tview.Line) int {
 	strLen := 0
-	for _, segment := range line {
+	for _, segment := range line.Segments {
 		strLen += uniseg.StringWidth(segment.Text)
 	}
 	return strLen
 }
 
 func appendLine(builder *tview.LineBuilder, line tview.Line) {
-	for _, segment := range line {
+	for _, segment := range line.Segments {
 		builder.Write(segment.Text, segment.Style)
 	}
 }

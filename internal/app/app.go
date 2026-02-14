@@ -5,13 +5,13 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/ayn2op/discordo/internal/clipboard"
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/consts"
-	"github.com/ayn2op/discordo/internal/keyring"
-	"github.com/ayn2op/discordo/internal/ui/chat"
-	"github.com/ayn2op/discordo/internal/ui/login"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/clipboard"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/consts"
+	"github.com/xqrs/discordox/internal/keyring"
+	"github.com/xqrs/discordox/internal/ui/chat"
+	"github.com/xqrs/discordox/internal/ui/login"
+	"github.com/xqrs/tview"
 	"github.com/gdamore/tcell/v3"
 )
 
@@ -105,7 +105,7 @@ func (a *App) onInputCapture(event *tcell.EventKey) *tcell.EventKey {
 		a.quit()
 		return nil
 	case "Ctrl+C":
-		// https://github.com/ayn2op/tview/blob/a64fc48d7654432f71922c8b908280cdb525805c/application.go#L153
+		// https://github.com/xqrs/tview/blob/a64fc48d7654432f71922c8b908280cdb525805c/application.go#L153
 		return tcell.NewEventKey(tcell.KeyCtrlC, "", tcell.ModNone)
 	}
 

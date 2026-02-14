@@ -1,8 +1,8 @@
 package chat
 
 import (
-	"github.com/ayn2op/discordo/internal/ui"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/ui"
+	"github.com/xqrs/tview"
 	"github.com/gdamore/tcell/v3"
 )
 

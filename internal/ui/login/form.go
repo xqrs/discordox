@@ -4,13 +4,13 @@ import (
 	"errors"
 	"log/slog"
 
-	"github.com/ayn2op/tview/layers"
+	"github.com/xqrs/tview/layers"
 	"github.com/gdamore/tcell/v3"
 
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/keyring"
-	"github.com/ayn2op/discordo/internal/ui"
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/keyring"
+	"github.com/xqrs/discordox/internal/ui"
+	"github.com/xqrs/tview"
 	"golang.design/x/clipboard"
 )
 

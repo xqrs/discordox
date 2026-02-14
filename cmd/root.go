@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/ayn2op/discordo/internal/app"
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/logger"
+	"github.com/xqrs/discordox/internal/app"
+	"github.com/xqrs/discordox/internal/config"
+	"github.com/xqrs/discordox/internal/logger"
 	"github.com/diamondburned/arikawa/v3/utils/ws"
 )
 

@@ -1,7 +1,7 @@
 package picker
 
 import (
-	"github.com/ayn2op/tview"
+	"github.com/xqrs/tview"
 	"github.com/gdamore/tcell/v3"
 	"github.com/sahilm/fuzzy"
 )
@@ -71,7 +71,7 @@ func (p *Picker) setFilteredItems(filtered Items) {
 			SetWrap(false).
 			SetWordWrap(false).
 			SetTextStyle(style).
-			SetLines([]tview.Line{{{Text: p.filtered[index].Text, Style: style}}})
+			SetLines([]tview.Line{tview.NewLine(tview.NewSegment(p.filtered[index].Text, style))})
 	})
 
 	if len(filtered) == 0 {
