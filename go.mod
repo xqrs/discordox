@@ -23,7 +23,7 @@ require (
 	github.com/sahilm/fuzzy v0.1.1
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
-	github.com/xqrs/tview v0.0.0-20260214104741-720bcf798e69
+	github.com/xqrs/tview v0.0.0-20260214115401-fbde19d8cb83
 	github.com/yuin/goldmark v1.7.16
 	github.com/zalando/go-keyring v0.2.6
 	golang.design/x/clipboard v0.7.1

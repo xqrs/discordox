@@ -172,8 +172,7 @@ func (r *Renderer) applyInlineAttr(style tcell.Style, attr discordmd.Attribute) 
 
 func (r *Renderer) renderFencedCodeBlock(builder *tview.LineBuilder, source []byte, node *ast.FencedCodeBlock, base tcell.Style) {
 	var code strings.Builder
-	indent := r.cfg.Markdown.CodeBlockIndent
-	indentSegment := tview.NewSegment(indent, base)
+	indent := []tview.Segment{tview.NewSegment(r.cfg.Markdown.CodeBlockIndent, base)}
 	lines := node.Lines()
 	for i := range lines.Len() {
 		line := lines.At(i)
@@ -201,13 +200,16 @@ func (r *Renderer) renderFencedCodeBlock(builder *tview.LineBuilder, source []by
 	// Show a fallback header when the language is omitted or unknown.
 	headerStyle := base.Dim(true)
 	if analyzed {
-		builder.Write(indent+"code: analyzed", headerStyle)
+		builder.WriteSegments(indent)
+		builder.Write("code: analyzed", headerStyle)
 		builder.NewLine()
 	} else if language == "" {
-		builder.Write(indent+"code", headerStyle)
+		builder.WriteSegments(indent)
+		builder.Write("code", headerStyle)
 		builder.NewLine()
 	} else if !declaredLanguageSupported {
-		builder.Write(indent+"code: "+language, headerStyle)
+		builder.WriteSegments(indent)
+		builder.Write("code: "+language, headerStyle)
 		builder.NewLine()
 	}
 
@@ -216,9 +218,8 @@ func (r *Renderer) renderFencedCodeBlock(builder *tview.LineBuilder, source []by
 		for i := range lines.Len() {
 			line := lines.At(i)
 			builder.AppendLine(tview.NewLine(
-				indentSegment,
-				tview.NewSegment(string(line.Value(source)), base),
-			).WithIndent(indentSegment))
+				append(indent, tview.NewSegment(string(line.Value(source)), base))...,
+			).WithIndent(indent))
 		}
 		return
 	}
@@ -228,8 +229,8 @@ func (r *Renderer) renderFencedCodeBlock(builder *tview.LineBuilder, source []by
 		theme = styles.Fallback
 	}
 
-	builder.SetIndent(tview.NewSegment(indent, base))
-	builder.Write(indent, base)
+	builder.SetIndent(indent)
+	builder.WriteSegments(indent)
 	for token := iterator(); token != chroma.EOF; token = iterator() {
 		style := applyChromaStyle(base, theme.Get(token.Type))
 		// Chroma tokens may include embedded newlines, so split and re-emit with indentation on each visual line.
@@ -237,7 +238,7 @@ func (r *Renderer) renderFencedCodeBlock(builder *tview.LineBuilder, source []by
 		for i, part := range parts {
 			if i > 0 {
 				builder.NewLine()
-				builder.Write(indent, base)
+				builder.WriteSegments(indent)
 			}
 			if part != "" {
 				builder.Write(part, style)

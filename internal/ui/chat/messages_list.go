@@ -494,6 +494,96 @@ func (ml *messagesList) drawDefaultMessage(builder *tview.LineBuilder, message d
 			builder.Write(a.Filename, attachmentStyle)
 		}
 	}
+
+	ml.drawEmbeds(builder, message, baseStyle, showSpoiler)
+}
+
+func (ml *messagesList) drawEmbeds(builder *tview.LineBuilder, message discord.Message, baseStyle tcell.Style, showSpoiler bool) {
+	for _, embed := range message.Embeds {
+		builder.NewLine()
+		indent := []tview.Segment{tview.NewSegment(" │ ", baseStyle)}
+		if embed.Color != 0 {
+			for i := range indent {
+				indent[i].Style = indent[i].Style.Foreground(tcell.NewHexColor(int32(embed.Color)))
+			}
+		}
+
+		if embed.Author != nil && embed.Author.Name != "" {
+			builder.AppendLine(tview.NewLine(
+				append(indent, tview.NewSegment(embed.Author.Name, baseStyle.Dim(true)))...,
+			).WithIndent(indent))
+		}
+
+		if embed.Title != "" {
+			if embed.URL != "" {
+				urlFg := ml.cfg.Theme.MessagesList.URLStyle.GetForeground()
+				builder.AppendLine(tview.NewLine(
+					append(indent, tview.NewSegment(embed.Title, baseStyle.Foreground(urlFg).Bold(true).Underline(true)))...,
+				).WithIndent(indent))
+			} else {
+				builder.AppendLine(tview.NewLine(
+					append(indent, tview.NewSegment(embed.Title, baseStyle.Bold(true)))...,
+				).WithIndent(indent))
+			}
+		}
+
+		if embed.Description != "" {
+			desc := []byte(embed.Description)
+			root := discordmd.ParseWithMessage(desc, *ml.chatView.state.Cabinet, &message, false)
+			lines := ml.renderer.RenderLines(desc, root, baseStyle, showSpoiler)
+			for _, line := range lines {
+				builder.AppendLine(tview.NewLine(
+					append(indent, line.Segments...)...,
+				).WithIndent(append(indent, line.Indent...)))
+			}
+		}
+
+		for _, field := range embed.Fields {
+			builder.AppendLine(tview.NewLine(
+				append(indent, tview.NewSegment(field.Name, baseStyle.Bold(true)))...,
+			).WithIndent(indent))
+			value := []byte(field.Value)
+			root := discordmd.ParseWithMessage(value, *ml.chatView.state.Cabinet, &message, false)
+			lines := ml.renderer.RenderLines(value, root, baseStyle, showSpoiler)
+			for _, line := range lines {
+				builder.AppendLine(tview.NewLine(
+					append(indent, line.Segments...)...,
+				).WithIndent(append(indent, line.Indent...)))
+			}
+		}
+
+		if embed.Image != nil && embed.Image.URL != "" {
+			urlFg := ml.cfg.Theme.MessagesList.URLStyle.GetForeground()
+			builder.AppendLine(tview.NewLine(
+				append(indent, tview.NewSegment(embed.Image.URL, baseStyle.Foreground(urlFg).Underline(true)))...,
+			).WithIndent(indent))
+		}
+
+		if embed.Thumbnail != nil && embed.Thumbnail.URL != "" {
+			urlFg := ml.cfg.Theme.MessagesList.URLStyle.GetForeground()
+			builder.AppendLine(tview.NewLine(
+				append(indent, tview.NewSegment(embed.Thumbnail.URL, baseStyle.Foreground(urlFg).Underline(true)))...,
+			).WithIndent(indent))
+		}
+
+		if embed.Footer != nil && embed.Footer.Text != "" {
+			if embed.Timestamp.IsValid() {
+				builder.AppendLine(tview.NewLine(
+					append(indent, tview.NewSegment(embed.Footer.Text + " • " + ml.formatTimestamp(embed.Timestamp), baseStyle.Dim(true)))...,
+				).WithIndent(indent))
+			} else {
+				builder.AppendLine(tview.NewLine(
+					append(indent, tview.NewSegment(embed.Footer.Text, baseStyle.Dim(true)))...,
+				).WithIndent(indent))
+			}
+		} else if embed.Timestamp.IsValid() {
+			builder.AppendLine(tview.NewLine(
+				append(indent, tview.NewSegment(ml.formatTimestamp(embed.Timestamp), baseStyle.Dim(true)))...,
+			).WithIndent(indent))
+		}
+
+		builder.NewLine()
+	}
 }
 
 func (ml *messagesList) drawForwardedMessage(builder *tview.LineBuilder, message discord.Message, baseStyle tcell.Style) {
