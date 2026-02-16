@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-const Name = "discordo"
+const Name = "discordox"
 
 var cacheDir string
 
